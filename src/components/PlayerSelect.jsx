@@ -15,6 +15,7 @@ export default function PlayerSelect({
   selectedPlayer,
   onSelectPlayer,
   disabledReasons = new Map(),
+  hidePositionFilter = false,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -62,13 +63,6 @@ export default function PlayerSelect({
               alt=""
               className="mini-flag"
             />
-            {selectedPlayer.logo_url && (
-              <img
-                src={selectedPlayer.logo_url}
-                alt=""
-                className="mini-flag"
-              />
-            )}
             <span className="player-name">{selectedPlayer.name}</span>
             <span className="player-team-context">
               ({selectedPlayer.team_name || selectedPlayer.position})
@@ -97,18 +91,20 @@ export default function PlayerSelect({
               onClick={(e) => e.stopPropagation()}
               className="search-input"
             />
-            <select
-              value={positionFilter}
-              onChange={(e) => setPositionFilter(e.target.value)}
-              onClick={(e) => e.stopPropagation()}
-              className="position-dropdown"
-            >
-              {POSITIONS.map((pos) => (
-                <option key={pos.id} value={pos.id}>
-                  {pos.label}
-                </option>
-              ))}
-            </select>
+            {!hidePositionFilter && (
+              <select
+                value={positionFilter}
+                onChange={(e) => setPositionFilter(e.target.value)}
+                onClick={(e) => e.stopPropagation()}
+                className="position-dropdown"
+              >
+                {POSITIONS.map((pos) => (
+                  <option key={pos.id} value={pos.id}>
+                    {pos.label}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
 
           <ul className="options-list">
@@ -139,17 +135,7 @@ export default function PlayerSelect({
                         <span className="option-subtext">
                           {player.team?.name}
                           {player.team_name && (
-                            <>
-                              {" "}•{" "}
-                              {player.logo_url && (
-                                <img
-                                  src={player.logo_url}
-                                  alt=""
-                                  className="club-logo"
-                                />
-                              )}
-                              {player.team_name}
-                            </>
+                            <> • {player.team_name}</>
                           )}
                         </span>
                       </div>

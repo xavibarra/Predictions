@@ -15,7 +15,7 @@ const TEAM_PICK_KEYS = [
 const PLAYER_PICK_KEYS = [
   { key: "top_scorer_id", labelKey: "tournament_top_scorer", icon: "⚽", pos: null },
   { key: "best_player_id", labelKey: "tournament_best_player", icon: "🌟", pos: null },
-  { key: "best_goalkeeper_id", labelKey: "tournament_best_gk", icon: "🧤", pos: "portero" },
+  { key: "best_goalkeeper_id", labelKey: "tournament_best_gk", icon: "🧤", pos: "GK" },
 ];
 
 const EMPTY = {
@@ -153,6 +153,7 @@ export default function TournamentPicks() {
                   selectedPlayer={playerById(picks[key])}
                   onSelectPlayer={(p) => handlePlayerChange(key, p)}
                   disabledReasons={new Map()}
+                  hidePositionFilter={pos !== null}
                 />
               </div>
             );
