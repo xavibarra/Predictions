@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(node node_modules/vite/bin/vite.js)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(pnpm exec *)",
+      "Bash(pnpm add *)"
+    ]
+  }
+}

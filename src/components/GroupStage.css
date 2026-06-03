@@ -1,0 +1,64 @@
+.gs-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.gs-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.gs-filter-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  min-width: 36px;
+  flex-shrink: 0;
+}
+
+.gs-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.gs-pill {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: var(--sans);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.gs-pill:hover {
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+.gs-pill.active {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gs-count {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}

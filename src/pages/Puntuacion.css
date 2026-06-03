@@ -1,0 +1,206 @@
+.pun-page {
+  padding: 24px 0 40px;
+  max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Dos columnas en desktop para clasificación + premios */
+.pun-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 28px;
+}
+
+@media (max-width: 640px) {
+  .pun-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pun-page h1 {
+  margin-bottom: 28px;
+}
+
+/* Sección */
+.pun-section {
+  margin-bottom: 28px;
+}
+
+/* En el grid de 2 columnas, las secciones y sus tarjetas ocupan la misma altura */
+.pun-bottom-grid > .pun-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.pun-bottom-grid > .pun-section .pun-clasif-card,
+.pun-bottom-grid > .pun-section .pun-rules {
+  flex: 1;
+}
+
+.pun-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+/* Filas de reglas */
+.pun-rules {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pun-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pun-row:last-child {
+  border-bottom: none;
+}
+
+/* Badge de puntos */
+.pun-pts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  flex-shrink: 0;
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 7px;
+  padding: 5px 6px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.pun-pts span {
+  font-size: 0.6rem;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.pun-pts--bonus {
+  background-color: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #16a34a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pun-pts--bonus {
+    color: #4ade80;
+  }
+}
+
+/* Texto de la regla */
+.pun-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.pun-text strong {
+  font-size: 0.875rem;
+  color: var(--text-h);
+}
+
+.pun-text span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* Notas */
+.pun-notes {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pun-notes li {
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.45;
+}
+
+.pun-notes li::before {
+  content: "·";
+  position: absolute;
+  left: 3px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Card de clasificación */
+.pun-clasif-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pun-clasif-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pun-clasif-pts {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 7px;
+  padding: 5px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 52px;
+  text-align: center;
+}
+
+.pun-clasif-pts--secondary {
+  background-color: var(--bg);
+  border-color: var(--border);
+  color: var(--text-h);
+}
+
+.pun-clasif-divider {
+  height: 1px;
+  background-color: var(--border);
+}
+
+.pun-clasif-example {
+  font-size: 0.78rem;
+  color: var(--muted);
+  background-color: var(--bg);
+  border-left: 3px solid var(--accent-border);
+  padding: 6px 10px;
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+}
+
+.pun-clasif-example strong {
+  color: var(--text);
+}

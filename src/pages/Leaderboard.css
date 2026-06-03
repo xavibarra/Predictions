@@ -1,0 +1,153 @@
+.leaderboard-page {
+  padding: 24px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lb-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 16px;
+  margin-bottom: 28px;
+}
+
+.lb-status {
+  padding: 24px 0;
+  color: var(--muted);
+}
+
+.lb-error {
+  color: #ef4444;
+}
+
+.lb-empty {
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 32px 0;
+}
+
+/* Lista */
+.lb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 640px;
+}
+
+/* Fila base */
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.15s ease;
+}
+
+/* Posición */
+.lb-pos {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+  min-width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Nombre */
+.lb-name {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-h);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Badge "tú" */
+.lb-you {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+/* Puntos */
+.lb-pts {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-h);
+  font-variant-numeric: tabular-nums;
+}
+
+.lb-pts-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  min-width: 22px;
+}
+
+/* Fila del usuario actual */
+.lb-me {
+  border-color: var(--accent-border);
+  background-color: var(--accent-bg);
+}
+
+.lb-me .lb-pts {
+  color: var(--accent);
+}
+
+/* Medallas — tinte de fondo sutil */
+.lb-medal-1 {
+  border-color: rgba(245, 158, 11, 0.4);
+  background-color: rgba(245, 158, 11, 0.06);
+}
+
+.lb-medal-1 .lb-pos {
+  font-size: 1.3rem;
+}
+
+.lb-medal-2 {
+  border-color: rgba(156, 163, 175, 0.5);
+  background-color: rgba(156, 163, 175, 0.06);
+}
+
+.lb-medal-2 .lb-pos {
+  font-size: 1.3rem;
+}
+
+.lb-medal-3 {
+  border-color: rgba(180, 113, 60, 0.4);
+  background-color: rgba(180, 113, 60, 0.06);
+}
+
+.lb-medal-3 .lb-pos {
+  font-size: 1.3rem;
+}
+
+/* Cuando el usuario actual es también medalla, prevalece el accent */
+.lb-medal-1.lb-me,
+.lb-medal-2.lb-me,
+.lb-medal-3.lb-me {
+  border-color: var(--accent-border);
+  background-color: var(--accent-bg);
+}
+
+@media (max-width: 600px) {
+  .lb-row {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .lb-pts {
+    font-size: 1rem;
+  }
+}

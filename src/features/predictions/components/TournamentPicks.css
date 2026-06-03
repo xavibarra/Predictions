@@ -1,0 +1,141 @@
+.tp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.tp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tp-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.tp-saved {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+/* Sección */
+.tp-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tp-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+/* Grids */
+.tp-team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.tp-player-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+/* Cada pick */
+.tp-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tp-pick-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.tp-pick-icon {
+  font-size: 0.85rem;
+}
+
+/* Select de equipo */
+.tp-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tp-select-flag {
+  position: absolute;
+  left: 9px;
+  width: 20px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tp-select {
+  width: 100%;
+  padding: 8px 10px;
+  padding-left: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-h);
+  font-size: 0.82rem;
+  font-family: var(--sans);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239490a8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.tp-select--has-flag {
+  padding-left: 36px;
+}
+
+.tp-select:focus {
+  border-color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .tp-team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tp-player-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .tp-team-grid {
+    grid-template-columns: 1fr;
+  }
+}

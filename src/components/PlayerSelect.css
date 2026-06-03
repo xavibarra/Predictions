@@ -1,0 +1,218 @@
+.player-select-container {
+  position: relative;
+  width: 100%;
+  font-family: var(--sans);
+}
+
+.select-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  min-height: 46px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.select-trigger:hover,
+.select-trigger.active {
+  border-color: var(--accent);
+}
+
+.placeholder {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.arrow-icon {
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+
+.selected-player-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mini-flag {
+  height: 14px;
+  width: 20px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+.club-logo {
+  height: 14px;
+  width: 14px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.player-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.player-team-context {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Dropdown */
+.select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 280px;
+}
+
+/* Controles superiores agrupados (Input + Select) */
+.dropdown-controls {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-input {
+  flex: 2;
+  min-width: 0; /* previene desbordamiento */
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--bg-card);
+  color: var(--text-h);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.position-dropdown {
+  flex: 1.2;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--bg-card);
+  color: var(--text-h);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-input:focus,
+.position-dropdown:focus {
+  border-color: var(--accent);
+}
+
+/* Lista */
+.options-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.option-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+}
+
+.option-item:last-child {
+  border-bottom: none;
+}
+
+.option-item:hover:not(.disabled) {
+  background-color: var(--bg);
+}
+
+.option-item.selected {
+  background-color: var(--accent-bg);
+}
+
+.option-item.disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.disabled-toast {
+  padding: 8px 14px;
+  background-color: rgba(234, 179, 8, 0.12);
+  border-bottom: 1px solid rgba(234, 179, 8, 0.3);
+  color: #a16207;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .disabled-toast {
+    color: #fbbf24;
+  }
+}
+
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.option-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.option-subtext {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.option-badge-pos {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background-color: var(--bg);
+  color: var(--muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.no-results {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
