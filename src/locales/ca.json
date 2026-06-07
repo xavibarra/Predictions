@@ -53,7 +53,15 @@
   "match_group": "Grup {{name}}",
 
   "player_search": "Cerca per nom, país o equip...",
+  "player_search_placeholder": "Ex: Lamine, Espanya, Barça...",
   "player_no_results": "No s'han trobat jugadors",
+  "player_disabled_no_goals": "{{team}} no va marcar en aquest partit",
+  "player_disabled_already_used": "Ja has triat {{name}} en un altre partit",
+  "pos_all": "Totes les posicions",
+  "pos_gk": "Porter",
+  "pos_df": "Defensa",
+  "pos_mf": "Migcampista",
+  "pos_fw": "Davanter",
 
   "filter_state": "Estat",
   "filter_all": "Tots",

@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import "./PlayerSelect.css";
 
 const POSITIONS = [
-  { id: "all", label: "Todas las posiciones" },
-  { id: "portero", label: "Portero" },
-  { id: "defensa", label: "Defensa" },
-  { id: "centrocampista", label: "Centrocampista" },
-  { id: "atacante", label: "Atacante" },
+  { id: "all", labelKey: "pos_all" },
+  { id: "GK", labelKey: "pos_gk" },
+  { id: "DF", labelKey: "pos_df" },
+  { id: "MF", labelKey: "pos_mf" },
+  { id: "FW", labelKey: "pos_fw" },
 ];
 
 export default function PlayerSelect({
@@ -91,7 +91,7 @@ export default function PlayerSelect({
           <div className="dropdown-controls">
             <input
               type="text"
-              placeholder="Ej: Lamine, España, Barça..."
+              placeholder={t("player_search_placeholder")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onClick={(e) => e.stopPropagation()}
@@ -106,7 +106,7 @@ export default function PlayerSelect({
               >
                 {POSITIONS.map((pos) => (
                   <option key={pos.id} value={pos.id}>
-                    {pos.label}
+                    {t(pos.labelKey)}
                   </option>
                 ))}
               </select>

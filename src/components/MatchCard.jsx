@@ -50,13 +50,13 @@ export default function MatchCard({
       if (player.team_id === match.home_team_id && home === 0) {
         disabledReasons.set(
           player.id,
-          `${match.home_team?.name} no marcó en este partido`,
+          t("player_disabled_no_goals", { team: match.home_team?.name }),
         );
       }
       if (player.team_id === match.away_team_id && away === 0) {
         disabledReasons.set(
           player.id,
-          `${match.away_team?.name} no marcó en este partido`,
+          t("player_disabled_no_goals", { team: match.away_team?.name }),
         );
       }
     });
@@ -74,7 +74,7 @@ export default function MatchCard({
     if (usedScorerIds.has(player.id) && !disabledReasons.has(player.id)) {
       disabledReasons.set(
         player.id,
-        `Ya elegiste a ${player.name} como goleador en otro partido`,
+        t("player_disabled_already_used", { name: player.name }),
       );
     }
   });
