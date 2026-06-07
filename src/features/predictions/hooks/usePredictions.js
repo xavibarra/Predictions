@@ -48,7 +48,6 @@ export function usePredictions() {
       predicted_away_score: awayScore,
       predicted_scorer_id: scorerId,
     };
-    // Actualización local inmediata para que usedScorerIds se propague a todas las cards
     setPredictions((prev) => ({ ...prev, [matchId]: newPred }));
 
     const { error } = await supabase

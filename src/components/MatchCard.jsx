@@ -110,10 +110,14 @@ export default function MatchCard({
     return () => clearTimeout(timer);
   }, [home, away, selectedPlayer]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function handleScoreChange(setter) {
+  function handleScoreChange(setter, teamId) {
     return (e) => {
-      setter(e.target.value);
-      setSelectedPlayer(null);
+      const val = e.target.value;
+      setter(val);
+      // Solo borra el goleador si su equipo pasa a 0 goles
+      if (selectedPlayer && parseInt(val) === 0 && selectedPlayer.team_id === teamId) {
+        setSelectedPlayer(null);
+      }
     };
   }
 
@@ -145,7 +149,7 @@ export default function MatchCard({
               min="0"
               placeholder="-"
               value={homeScore}
-              onChange={handleScoreChange(setHomeScore)}
+              onChange={handleScoreChange(setHomeScore, match.home_team_id)}
               className="score-box"
             />
             <span className="score-divider-text">:</span>
@@ -154,7 +158,7 @@ export default function MatchCard({
               min="0"
               placeholder="-"
               value={awayScore}
-              onChange={handleScoreChange(setAwayScore)}
+              onChange={handleScoreChange(setAwayScore, match.away_team_id)}
               className="score-box"
             />
           </div>
@@ -176,6 +180,7 @@ export default function MatchCard({
           selectedPlayer={effectivePlayer}
           onSelectPlayer={setSelectedPlayer}
           disabledReasons={disabledReasons}
+          disabled={!hasScores}
         />
         {!hasScores && (
           <p className="scorer-hint">{t("match_score_hint")}</p>

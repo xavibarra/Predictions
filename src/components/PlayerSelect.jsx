@@ -16,6 +16,7 @@ export default function PlayerSelect({
   onSelectPlayer,
   disabledReasons = new Map(),
   hidePositionFilter = false,
+  disabled = false,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -50,11 +51,16 @@ export default function PlayerSelect({
     setTimeout(() => setDisabledMsg(null), 2500);
   }
 
+  function handleTriggerClick() {
+    if (disabled) return;
+    setIsOpen(!isOpen);
+  }
+
   return (
-    <div className="player-select-container" ref={dropdownRef}>
+    <div className={`player-select-container ${disabled ? "player-select--disabled" : ""}`} ref={dropdownRef}>
       <div
-        className={`select-trigger ${isOpen ? "active" : ""}`}
-        onClick={() => setIsOpen(!isOpen)}
+        className={`select-trigger ${isOpen ? "active" : ""} ${disabled ? "disabled" : ""}`}
+        onClick={handleTriggerClick}
       >
         {selectedPlayer ? (
           <div className="selected-player-info">

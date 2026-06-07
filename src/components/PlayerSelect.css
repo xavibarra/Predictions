@@ -33,6 +33,15 @@
   border-color: var(--accent);
 }
 
+.select-trigger.disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.player-select--disabled .select-trigger:hover {
+  border-color: var(--border);
+}
+
 .placeholder {
   color: var(--muted);
   font-size: 0.9rem;
