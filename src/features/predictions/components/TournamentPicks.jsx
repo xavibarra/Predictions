@@ -27,6 +27,7 @@ export default function TournamentPicks() {
   const { user } = useAuth();
   const [teams, setTeams] = useState([]);
   const [players, setPlayers] = useState([]);
+  const [goalkeepers, setGoalkeepers] = useState([]);
   const [picks, setPicks] = useState(EMPTY);
   const [saved, setSaved] = useState(false);
   const savedRef = useRef({ ...EMPTY });
@@ -36,13 +37,16 @@ export default function TournamentPicks() {
   useEffect(() => {
     if (!user) return;
     async function load() {
-      const [teamsRes, playersRes, picksRes] = await Promise.all([
+      const [teamsRes, p1, p2, gkRes, picksRes] = await Promise.all([
         supabase.from("teams").select("id, name, flag_url").order("name"),
-        supabase.from("players").select("*, team:teams(*)").order("name"),
+        supabase.from("players").select("*, team:teams(*)").order("name").range(0, 999),
+        supabase.from("players").select("*, team:teams(*)").order("name").range(1000, 1999),
+        supabase.from("players").select("*, team:teams(*)").eq("position", "GK").order("name"),
         supabase.from("tournament_picks").select("*").eq("user_id", user.id).maybeSingle(),
       ]);
       if (teamsRes.data) setTeams(teamsRes.data);
-      if (playersRes.data) setPlayers(playersRes.data);
+      setPlayers([...(p1.data ?? []), ...(p2.data ?? [])]);
+      if (gkRes.data) setGoalkeepers(gkRes.data);
       if (picksRes.data) {
         const loaded = {
           champion_id: picksRes.data.champion_id,
@@ -89,7 +93,8 @@ export default function TournamentPicks() {
   }
 
   function playerById(id) {
-    return id ? (players.find((p) => p.id === id) ?? null) : null;
+    if (!id) return null;
+    return goalkeepers.find((p) => p.id === id) ?? players.find((p) => p.id === id) ?? null;
   }
 
   function teamById(id) {
@@ -141,7 +146,7 @@ export default function TournamentPicks() {
         <p className="tp-section-label">{t("tournament_awards")}</p>
         <div className="tp-player-grid">
           {PLAYER_PICK_KEYS.map(({ key, labelKey, icon, pos }) => {
-            const filtered = pos ? players.filter((p) => p.position === pos) : players;
+            const filtered = pos === "GK" ? goalkeepers : players;
             return (
               <div key={key} className="tp-pick">
                 <label className="tp-pick-label">

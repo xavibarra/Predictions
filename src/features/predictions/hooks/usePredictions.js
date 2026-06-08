@@ -12,22 +12,25 @@ export function usePredictions() {
   useEffect(() => {
     if (!user) return;
     async function loadAll() {
-      const [matchesRes, playersRes, predsRes] = await Promise.all([
-        supabase
-          .from("matches")
-          .select(
-            "*, home_team:teams!home_team_id(*), away_team:teams!away_team_id(*)",
-          )
-          .eq("phase", "group")
-          .order("match_date"),
-        supabase.from("players").select("*, team:teams(*)").order("name"),
-        supabase
-          .from("group_predictions")
-          .select("*")
-          .eq("user_id", user.id),
+      // 1. Fetch matches first to extract team IDs
+      const matchesRes = await supabase
+        .from("matches")
+        .select("*, home_team:teams!home_team_id(*), away_team:teams!away_team_id(*)")
+        .eq("phase", "group")
+        .order("match_date");
+
+      const loadedMatches = matchesRes.data ?? [];
+      const teamIds = [...new Set(loadedMatches.flatMap((m) => [m.home_team_id, m.away_team_id]))];
+
+      // 2. Fetch only players from those teams (paginated to bypass 1000-row server limit)
+      const [p1, p2, predsRes] = await Promise.all([
+        supabase.from("players").select("*, team:teams(*)").in("team_id", teamIds).order("name").range(0, 999),
+        supabase.from("players").select("*, team:teams(*)").in("team_id", teamIds).order("name").range(1000, 1999),
+        supabase.from("group_predictions").select("*").eq("user_id", user.id),
       ]);
-      if (matchesRes.data) setMatches(matchesRes.data);
-      if (playersRes.data) setPlayers(playersRes.data);
+
+      setMatches(loadedMatches);
+      setPlayers([...(p1.data ?? []), ...(p2.data ?? [])]);
       if (predsRes.data) {
         const map = predsRes.data.reduce((acc, p) => {
           acc[p.match_id] = p;
